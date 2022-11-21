@@ -1,0 +1,4 @@
+input_str = input("How many days? ")
+days = int(input_str)
+seconds = days * 24 * 60 * 60
+print (f"Seconds in that many days: {seconds}")
