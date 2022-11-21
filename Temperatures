@@ -1,0 +1,6 @@
+fah = int(input("Please type in a temperature (F): "))
+cel = (fah - 32) / 1.8
+if cel >= 0:
+    print(f"{fah} degrees Fahrenheit equals {cel} degrees Celsius")
+else:
+    print(f"{fah} degrees Fahrenheit equals {cel} degrees Celsius\nBrr! It's cold in here!")
