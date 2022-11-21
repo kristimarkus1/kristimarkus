@@ -1,0 +1,13 @@
+print("Person 1:")
+person1 = input("Name: ")
+person12 = int(input("Age: "))
+print ("Person 2:")
+person2 = input("Name: ")
+person22 = int(input("Age: "))
+
+if person12 < person22:
+    print(f"The elder is {person2}")
+elif person12 > person22:
+    print(f"The elder is {person1}")
+elif person12 == person22:
+    print(f"{person1} and {person2} are the same age")
