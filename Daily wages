@@ -1,0 +1,18 @@
+hourly = float(input("Hourly wage: "))
+worked = float(input("Hours worked: "))
+day = input("Day of the week: ")
+daily_wages = hourly * worked
+if day == "Monday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Tuesday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Wednesday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Thursday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Friday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Saturday":
+    print(f"Daily wages: {daily_wages} euros")
+if day == "Sunday":
+    print(f"Daily wages: {daily_wages * 2} euros")
