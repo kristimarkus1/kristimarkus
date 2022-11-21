@@ -1,0 +1,20 @@
+attempts = 0
+sum = 0
+pos = 0
+neg = 0
+while True:
+    number = int(input("Please type in integer numbers. Type in 0 to finish."))
+    attempts += 1
+    numbers = attempts -1
+    sum += number
+    if number > 0:
+        pos += 1
+    elif number < 0:
+        neg += 1
+    if number == 0:
+        break  
+print(f"Numbers typed in {numbers}")
+print(f"The sum of the numbers is {sum}")
+print(f"The mean of the numbers is {sum/numbers}")
+print(f"Positive numbers {pos}")
+print(f"Negative numbers {neg}")
