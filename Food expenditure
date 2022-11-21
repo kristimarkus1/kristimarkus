@@ -1,0 +1,8 @@
+number1 = float(input("How many times a week do you eat at the student cafeteria? "))
+number2 = float(input("The price of a typical student lunch? "))
+number3 = float(input("How much money do you spend on groceries in a week? "))
+
+daily1 = number1 * number2 + number3
+daily2 = daily1 / 7 
+weekly = number3 + number2 * number1
+print(f"Average food expenditure: \nDaily: {daily2} euros \nWeekly: {weekly} euros")
