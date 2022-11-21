@@ -1,0 +1,12 @@
+number1 = int(input("Number 1: "))
+number2 = int(input("Number 2: "))
+operation = input("Operation: ")
+value1 = number1 + number2
+value2 = number1 * number2
+value3 = number1 - number2
+if operation == "add":
+    print(f"{number1} + {number2} = {value1}")
+if operation == "multiply":
+    print (f"{number1} * {number2} = {value2}")
+if operation == "subtract":
+    print (f"{number1} - {number2} = {value3}")
