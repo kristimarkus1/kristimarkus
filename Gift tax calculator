@@ -1,0 +1,20 @@
+value = int(input("Value of gift: "))
+
+t1 = (value - 5000) * 0.08 + 100
+t2 = (value - 25000) * 0.10 + 1700
+t3 = (value - 55000) * 0.12 + 4700
+t4 = (value - 200000) * 0.15 + 22100
+t5 = (value - 1000000) * 0.17 + 142100
+
+if value < 5000:
+    print("No tax!")
+elif value >= 5000 and value < 25000:
+    print(f"Amount of tax: {t1}")
+elif value >=25000 and value < 55000:
+    print(f"Amount of tax: {t2}")
+elif value >=55000 and value < 200000:
+    print(f"Amount of tax: {t3}")
+elif value >= 200000 and value < 1000000:
+    print(f"Amount of tax: {t4}")
+elif value >= 1000000:
+    print(f"Amount of tax: {t5}")
