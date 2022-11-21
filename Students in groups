@@ -1,0 +1,10 @@
+number1 = int(input("How many students on the course? "))
+number2 = int(input("Desired group size? "))
+
+
+groups = number1 // number2
+
+if (number2 % 2) != 0:
+    print(f"Number of groups formed: {groups + 1}")
+else:
+    print(f"Number of groups formed: {groups}")
