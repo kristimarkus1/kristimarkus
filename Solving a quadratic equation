@@ -1,0 +1,23 @@
+import math
+def roots_of_equation(a, b, c): 
+  
+  D = b*b - 4*a*c 
+  sqrt_D = math.sqrt(abs(D))    
+  if D > 0: 
+    print(f"The roots are {(-b + sqrt_D)/(2*a)} and {(-b - sqrt_D)/(2*a)}") 
+      
+  elif D == 0: 
+    print(" real and same roots") 
+    print(-b / (2*a)) 
+  else:
+    print("Complex Roots") 
+    print(- b / (2*a), " + i", sqrt_D) 
+    print(- b / (2*a), " - i", sqrt_D) 
+a = int(input("Value of a: "))
+b = int(input("Value of b: "))
+c = int(input("Value of c: "))
+
+if a == 0: 
+  print("Input correct Quadratic Equation")   
+else:
+  roots_of_equation(a, b, c)
