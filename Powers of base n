@@ -1,0 +1,6 @@
+upper_limit = int(input("Upper limit: "))
+base = int(input("Base: "))
+a = 1
+while a < upper_limit or a == upper_limit:
+    print(a)
+    a = a * base
