@@ -1,0 +1,5 @@
+upper_limit = int(input("Upper limit: "))
+a = 1
+while a < upper_limit and a != upper_limit:
+    a += 1
+    print(a - 1)
