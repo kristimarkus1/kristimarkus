@@ -1,0 +1,9 @@
+limit = int(input("Limit:"))
+base = 0
+num = 0
+calc = " "
+while base < limit:
+    base += num
+    num += 1
+    calc += f" + {num}"
+print(base)
