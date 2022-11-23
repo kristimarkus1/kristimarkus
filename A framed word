@@ -1,0 +1,16 @@
+word = input("Word: ")
+pattern = "*" * 30
+
+mid = 30 - len(word)
+mid2 = mid // 2
+mid3 = mid2 - 1
+lenght = len(word)
+
+if lenght % 2 == 0:
+    print(pattern)
+    print("*" * 1 + mid3 * " " + word + mid3 * " " + "*" * 1)
+    print(pattern)
+else: 
+    print(pattern)
+    print("*" * 1 + mid3 * " " + word + mid3 * " " + " " + "*" * 1)
+    print(pattern)
