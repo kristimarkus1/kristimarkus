@@ -1,0 +1,3 @@
+string = input("Please type in a string: ")
+a = 20-len(string)
+print("*" * a + string)
