@@ -1,0 +1,9 @@
+width = int(input("Width: "))
+height = int(input("Height: "))
+row = "#"
+arv = "#" * width
+
+while height>0:
+    
+    print(arv)
+    height -=1
