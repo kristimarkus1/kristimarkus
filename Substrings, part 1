@@ -1,0 +1,11 @@
+string = input("Please type in a string: ")
+a = 0
+while True:
+    
+    lenght = len(string)
+    print(string[0:a])
+    
+    a += 1
+    
+    if lenght < a:
+        break
