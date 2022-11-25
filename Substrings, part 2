@@ -1,0 +1,12 @@
+string = input("Please type in a string: ")
+lenght1 = len(string)
+lenght2 = len(string)
+while True:
+    
+
+    print(string[lenght1:lenght2])
+    
+    lenght1 -= 1
+    
+    if lenght1 < 0:
+        break
