@@ -1,0 +1,46 @@
+a = "a"
+e = "e"
+o = "o"
+
+while True:
+    string = input("Please type in a string: ")
+    if a in string and e in string and o in string:
+        print("a found")
+        print("e found")
+        print ("o found")
+        break
+    elif e in string and a in string:
+        print("a found")
+        print("e found")
+        print("o not found")
+        break
+    elif o in string and a in string:
+        print("a found")
+        print("e not found")
+        print ("o found")
+        break
+    elif e in string and o in string:
+        print("a not found")
+        print("e found")
+        print("o found")
+        break
+    elif a in string:
+        print("a found")
+        print("e not found")
+        print("o not found")
+        break
+    elif e in string:
+        print("a not found")
+        print("e found")
+        print("o not found")
+        break
+    elif o in string:
+        print("a not found")
+        print("e not found")
+        print("o found")
+        break
+    else:
+        print("a not found")
+        print("e not found")
+        print("o not found")
+        break
