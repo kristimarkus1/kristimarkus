@@ -1,0 +1,5 @@
+def divide(a: int, b: int) -> float:
+    return a / b
+print(divide(5, 2))
+print(divide(5, 3))
+print(divide(1, 2))
