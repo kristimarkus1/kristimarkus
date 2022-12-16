@@ -24,7 +24,7 @@ def ask_name_and_greet_user():
     If the name is Thanos (case insensitive, so thanos and THANOS also count):
     Get out of here, Thanos! Nobody wants to play with you!
     """
-
+    print("Hello")
     name = input("What is your name? ").capitalize()
 
     if name == "Thanos":
@@ -35,15 +35,14 @@ def ask_name_and_greet_user():
 
 def calculate_hypotenuse_length(a: float, b: float) -> float:
     """Return hypotenuse value."""
-    c = ((a ** 2) + (b ** 2)) ** (1 / 2)
+    c = math.sqrt(a ** 2 + b ** 2)
     return c
 
 
 def calculate_cathetus_length(a: float, c: float) -> float:
     """Return cathetus value."""
-    
-    b = ((c ** 2) - (a ** 2)) ** (1/2)
-    
+    b = ((c ** 2) - (a ** 2)) ** (1 / 2)
+
     return b
 
 
