@@ -1,0 +1,11 @@
+string = input("Please type in a word: ")
+character = input("Please type in a character: ")
+index = string.find(character)
+lenght = len(string)
+a = index
+b = index + 1
+c = b + 1
+d = c + 1
+
+if index >= 0 and d < lenght :
+    print(string[a:d])
