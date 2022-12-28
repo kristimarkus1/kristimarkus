@@ -1,0 +1,8 @@
+sentence = input("Please type in a sentence: ")
+
+print(sentence[0])
+
+for x in range (0,len(sentence)):
+    if sentence [x] == " ":
+        letter = sentence[x+1]
+        print(letter)
