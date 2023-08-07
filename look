@@ -1,6 +1,5 @@
 #!/bin/bash
 
-find . -type f -name "a*" -print
-find . -type f -name "*z" -print
-find . -type f -name "z*a!" -print
-
+find . -type f -name "a*"
+find . -type f -name "*z"
+find . -type f -name "z*a!"
