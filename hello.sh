@@ -1,3 +1,2 @@
-#!/bin/sh
-echo "Hello kmarkus! "
-
+#!/bin/bash
+echo "Hello kmarkus!"
