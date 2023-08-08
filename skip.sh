@@ -1,1 +1,1 @@
-ls -1 | awk 'NR % 2==0'
+ls -1 | sed -n 'n;p'
