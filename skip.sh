@@ -1,1 +1,1 @@
-ls -1 | awk 'NR % 2==1'
+ls -1 | tail -n +2 | awk 'NR % 2==1'
