@@ -1,1 +1,1 @@
-find -name '*.sh' | sed s/\.sh//| sort -r 
+find -name '*.sh' | sed 's/\.sh//g' | sort -r
