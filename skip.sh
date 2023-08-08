@@ -1,1 +1,1 @@
-ls -1 | sed -n 'n:p'
+ls -l | sed -n 'n;p'
