@@ -1,1 +1,1 @@
-ls -1 | sed -n 'n;p' | tail -n +2
+ls -1 | awk 'NR % 2 == 1'| tail -n +2
