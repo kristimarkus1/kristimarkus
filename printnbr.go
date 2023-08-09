@@ -5,8 +5,10 @@ import (
 )
 
 func PrintNbr(n int) {
-	if n == 0 {
-		z01.PrintRune('0')
+	if n == -2147483648 {
+		z01.PrintRune('-')
+		z01.PrintRune('2')
+		printPositiveNbr(147483648)
 		return
 	}
 
@@ -15,8 +17,18 @@ func PrintNbr(n int) {
 		n = -n
 	}
 
-	if n >= 10 {
-		PrintNbr(n / 10)
+	printPositiveNbr(n)
+}
+
+func printPositiveNbr(n int) {
+	if n == 0 {
+		z01.PrintRune('0')
+		return
 	}
+
+	if n > 9 {
+		printPositiveNbr(n / 10)
+	}
+
 	z01.PrintRune(rune(n%10 + '0'))
 }
