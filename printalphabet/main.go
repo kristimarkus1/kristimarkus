@@ -2,11 +2,12 @@ package main
 
 import "github.com/01-edu/z01"
 
-
 func main() {
-	for char := 'a'; char <= 'z'; char++ {
-		z01.PrintRune(char)
+
+	for i := 'a' ; i <= 'z' ; i++ {
+
+		z01.PrintRune(i)
+
 	}
-	
 	z01.PrintRune('\n')
 }
