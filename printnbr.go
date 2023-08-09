@@ -1,30 +1,37 @@
 package piscine
 
-import "github.com/01-edu/z01"
+import (
+	"math/big"
 
-func PrintNbr(n int) {
+	"github.com/01-edu/z01"
+)
+
+func PrintNbr(n int64) {
 	if n == 0 {
 		z01.PrintRune('0')
 		return
 	}
 
+	bigIntN := new(big.Int).SetInt64(n)
 	if n < 0 {
 		z01.PrintRune('-')
-		n = -n
+		bigIntN.Abs(bigIntN)
 	}
 
-	digits := []int{}
-	for n > 0 {
-		digit := n % 10
-		digits = append(digits, digit)
-		n /= 10
+	ten := big.NewInt(10)
+	zero := big.NewInt(0)
+	reverse := new(big.Int)
+
+	for bigIntN.Cmp(zero) > 0 {
+		remainder := new(big.Int)
+		bigIntN, remainder = bigIntN.DivMod(bigIntN, ten, remainder)
+		reverse = reverse.Mul(reverse, ten)
+		reverse = reverse.Add(reverse, remainder)
 	}
 
-	if len(digits) == 0 {
-		z01.PrintRune('0')
-	} else {
-		for i := len(digits) - 1; i >= 0; i-- {
-			z01.PrintRune(rune(digits[i] + '0'))
-		}
+	for reverse.Cmp(zero) > 0 {
+		remainder := new(big.Int)
+		reverse, remainder = reverse.DivMod(reverse, ten, remainder)
+		z01.PrintRune(rune(remainder.Int64() + '0'))
 	}
 }
