@@ -13,18 +13,18 @@ func PrintNbr(n int) {
 		n = -n
 	}
 
-	reverse := 0
-	temp := n
-
-	for temp > 0 {
-		remainder := temp % 10
-		reverse = reverse*10 + remainder
-		temp /= 10
+	digits := []int{}
+	for n > 0 {
+		digit := n % 10
+		digits = append(digits, digit)
+		n /= 10
 	}
 
-	for reverse > 0 {
-		remainder := reverse % 10
-		z01.PrintRune(rune(remainder + '0'))
-		reverse /= 10
+	if len(digits) == 0 {
+		z01.PrintRune('0')
+	} else {
+		for i := len(digits) - 1; i >= 0; i-- {
+			z01.PrintRune(rune(digits[i] + '0'))
+		}
 	}
 }
