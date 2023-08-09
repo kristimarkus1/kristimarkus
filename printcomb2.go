@@ -2,7 +2,6 @@ package piscine
 
 import "github.com/01-edu/z01"
 
-
 func PrintComb2() {
 	for i := 0; i <= 98; i++ {
 		for j := i + 1; j <= 99; j++ {
@@ -11,12 +10,12 @@ func PrintComb2() {
 			z01.PrintRune(' ')
 			z01.PrintRune(rune(j/10 + '0'))
 			z01.PrintRune(rune(j%10 + '0'))
-	
+
 			if i < 98 {
 				z01.PrintRune(',')
 				z01.PrintRune(' ')
 			}
 		}
 	}
-		z01.PrintRune('\n')
+	z01.PrintRune('\n')
 }
