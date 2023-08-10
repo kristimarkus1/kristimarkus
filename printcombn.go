@@ -37,6 +37,7 @@ func printNumber(nums []int) {
 		}
 		printDigit(num)
 	}
+	z01.PrintRune('\n')
 }
 
 // Helper function to print a single digit
