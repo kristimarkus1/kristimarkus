@@ -30,14 +30,15 @@ func printCombination(nums []int, n, index, start int) {
 // Helper function to print a combination as a number
 func printNumber(nums []int) {
 	var buffer []rune
+	needComma := false
 
-	for i, num := range nums {
-		if i > 0 {
+	for _, num := range nums {
+		if needComma {
 			buffer = append(buffer, ',', ' ')
 		}
 		buffer = append(buffer, rune(num)+'0')
+		needComma = true
 	}
-	buffer = append(buffer, ',', ' ')
 	buffer = append(buffer, '\n')
 
 	for _, r := range buffer {
