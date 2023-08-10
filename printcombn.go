@@ -11,12 +11,12 @@ func PrintCombN(n int) {
 
 	nums := make([]int, n)
 	printCombination(nums, n, 0, 0)
-	z01.PrintRune('\n')
 }
 
 func printCombination(nums []int, n, index, start int) {
 	if index == n {
 		printNumber(nums)
+		z01.PrintRune('\n')
 		return
 	}
 
