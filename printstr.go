@@ -3,7 +3,9 @@ package piscine
 import "github.com/01-edu/z01"
 
 func PrintStr(s string) {
-	aString := "Hello World!"
+	sString := []byte(s)
 
-	x01.PrintRune(aString)
+	for _, abc := range sString {
+		z01.PrintRune(rune(abc))
+	}
 }
