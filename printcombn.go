@@ -12,6 +12,7 @@ func PrintCombN(n int) {
 
 	nums := make([]int, n)
 	printCombination(nums, n, 0, 0)
+	z01.PrintRune('\n') // Print newline after all combinations
 }
 
 // Helper function to recursively generate and print combinations
@@ -31,12 +32,13 @@ func printCombination(nums []int, n, index, start int) {
 func printNumber(nums []int) {
 	for i, num := range nums {
 		if i > 0 {
-			z01.PrintRune(',')
-			z01.PrintRune(' ')
+			if i > 0 {
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
+			}
 		}
 		printDigit(num)
 	}
-	z01.PrintRune('\n')
 }
 
 // Helper function to print a single digit
