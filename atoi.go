@@ -11,6 +11,7 @@ package piscine
 func Atoi(s string) int {
 	result := 0
 	sign := 1
+	valid := true
 
 	for i, c := range s {
 		if i == 0 && (c == '-' || c == '+') {
@@ -24,8 +25,13 @@ func Atoi(s string) int {
 			digit := int(c - '0')
 			result = result*10 + digit
 		} else {
+			valid = false
 			break
 		}
+	}
+
+	if !valid {
+		return 0
 	}
 
 	return result * sign
