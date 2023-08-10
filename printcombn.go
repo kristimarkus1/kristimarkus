@@ -24,7 +24,7 @@ func printCombination(nums []int, n, index, start int) {
 
 	for i := start; i <= 9; i++ {
 		nums[index] = i
-		printCombination(nums, n, index+1, i+1)
+		printCombination(nums, n, index+1, i)
 	}
 }
 
@@ -32,10 +32,8 @@ func printCombination(nums []int, n, index, start int) {
 func printNumber(nums []int) {
 	for i, num := range nums {
 		if i > 0 {
-			if i > 0 {
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
-			}
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
 		}
 		printDigit(num)
 	}
