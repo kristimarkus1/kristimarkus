@@ -37,6 +37,7 @@ func printNumber(nums []int) {
 		}
 		buffer = append(buffer, rune(num)+'0')
 	}
+	buffer = append(buffer, ',', ' ')
 	buffer = append(buffer, '\n')
 
 	for _, r := range buffer {
