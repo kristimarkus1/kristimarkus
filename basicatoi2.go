@@ -10,14 +10,19 @@ package piscine
 
 func BasicAtoi2(s string) int {
 	result := 0
+	valid := true
 
 	for _, c := range s {
 		digit := int(c - '0')
 		if digit < 0 || digit > 9 {
-			// Skip non-digit characters
-			continue
+			valid = false
+			break
 		}
 		result = result*10 + digit
+	}
+
+	if !valid {
+		result = 0
 	}
 
 	return result
