@@ -1,7 +1,7 @@
 package piscine
 
 import (
-	"fmt"
+	"github.com/01-edu/z01"
 )
 
 // PrintCombN prints all possible combinations of n different digits in ascending order.
@@ -31,9 +31,12 @@ func printCombination(nums []int, n, index, start int) {
 func printNumber(nums []int) {
 	for i, num := range nums {
 		if i > 0 {
-			fmt.Print(", ")
+			if i > 0 {
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
+			}
 		}
-		fmt.Print(num)
+		z01.PrintRune(rune(num) + '0')
 	}
-	fmt.Println()
+	z01.PrintRune('\n')
 }
