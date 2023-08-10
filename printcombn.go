@@ -31,10 +31,8 @@ func printCombination(nums []int, n, index, start int) {
 func printNumber(nums []int) {
 	for i, num := range nums {
 		if i > 0 {
-			if i > 0 {
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
-			}
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
 		}
 		z01.PrintRune(rune(num) + '0')
 	}
