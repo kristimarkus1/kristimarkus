@@ -29,19 +29,17 @@ func printCombination(nums []int, n, index, start int) {
 
 // Helper function to print a combination as a number
 func printNumber(nums []int) {
-	var buffer []rune
-	needComma := false
-
-	for _, num := range nums {
-		if needComma {
-			buffer = append(buffer, ',', ' ')
+	for i, num := range nums {
+		if i > 0 {
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
 		}
-		buffer = append(buffer, rune(num)+'0')
-		needComma = true
+		printDigit(num)
 	}
-	buffer = append(buffer, '\n')
+	z01.PrintRune('\n')
+}
 
-	for _, r := range buffer {
-		z01.PrintRune(r)
-	}
+// Helper function to print a single digit
+func printDigit(digit int) {
+	z01.PrintRune(rune(digit) + '0')
 }
