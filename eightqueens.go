@@ -12,19 +12,15 @@
 package piscine
 
 import (
-	"fmt"
+	"github.com/01-edu/z01"
 )
 
 func EightQueens() {
-	board := make([][]bool, 8)
-	for i := range board {
-		board[i] = make([]bool, 8)
-	}
-
+	board := make([]int, 8)
 	solveEightQueens(board, 0)
 }
 
-func solveEightQueens(board [][]bool, col int) {
+func solveEightQueens(board []int, col int) {
 	if col >= 8 {
 		printBoard(board)
 		return
@@ -32,45 +28,36 @@ func solveEightQueens(board [][]bool, col int) {
 
 	for row := 0; row < 8; row++ {
 		if isSafe(board, row, col) {
-			board[row][col] = true
+			board[col] = row
 			solveEightQueens(board, col+1)
-			board[row][col] = false
+			board[col] = 0
 		}
 	}
 }
 
-func isSafe(board [][]bool, row, col int) bool {
-	// Check the same row to the left
+func isSafe(board []int, row, col int) bool {
 	for i := 0; i < col; i++ {
-		if board[row][i] {
+		if board[i] == row || abs(board[i]-row) == abs(i-col) {
 			return false
 		}
 	}
-
-	// Check upper diagonal to the left
-	for i, j := row, col; i >= 0 && j >= 0; i, j = i-1, j-1 {
-		if board[i][j] {
-			return false
-		}
-	}
-
-	// Check lower diagonal to the left
-	for i, j := row, col; i < 8 && j >= 0; i, j = i+1, j-1 {
-		if board[i][j] {
-			return false
-		}
-	}
-
 	return true
 }
 
-func printBoard(board [][]bool) {
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
+func printBoard(board []int) {
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
-			if board[i][j] {
-				fmt.Printf("%d", j+1)
+			if board[i] == j {
+				z01.PrintRune(rune(j + 49))
 			}
 		}
 	}
-	fmt.Println()
+	z01.PrintRune('\n')
 }
