@@ -5,7 +5,7 @@ func RecursiveFactorial(nb int) int {
 		return 0
 	}
 
-	if nb == 1 {
+	if nb == 1 || nb == 0 {
 		return 1
 	}
 
