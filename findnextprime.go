@@ -6,20 +6,7 @@
 
 package piscine
 
-func FindNextPrime(nb int) int {
-	if nb < 2 {
-		return 2
-	}
-
-	for {
-		if IsPrime(nb) {
-			return nb
-		}
-		nb++
-	}
-}
-
-func IsPrime(nb int) bool {
+func IsPrimeCheck(nb int) bool {
 	if nb <= 1 {
 		return false
 	}
@@ -29,7 +16,6 @@ func IsPrime(nb int) bool {
 	if nb%2 == 0 || nb%3 == 0 {
 		return false
 	}
-
 	i := 5
 	for i*i <= nb {
 		if nb%i == 0 || nb%(i+2) == 0 {
@@ -37,6 +23,18 @@ func IsPrime(nb int) bool {
 		}
 		i += 6
 	}
-
 	return true
+}
+
+func FindNextPrime(nb int) int {
+	if nb < 2 {
+		return 2
+	}
+
+	for {
+		if IsPrimeCheck(nb) {
+			return nb
+		}
+		nb++
+	}
 }
