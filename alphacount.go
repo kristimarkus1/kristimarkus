@@ -3,7 +3,6 @@
 // The letters are from the Latin alphabet list only, any other characters, symbols or empty spaces shall not be counted.
 package piscine
 
-
 func isLatinLetter(r rune) bool {
 	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
 }
