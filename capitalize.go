@@ -3,6 +3,8 @@
 
 package piscine
 
+package piscine
+
 func Capitalize(s string) string {
 	result := ""
 	capitalizeNext := true
@@ -17,11 +19,7 @@ func Capitalize(s string) string {
 				}
 				capitalizeNext = false
 			} else {
-				if char >= 'A' && char <= 'Z' {
-					result += string(char - 'A' + 'a')
-				} else {
-					result += string(char)
-				}
+				result += string(char)
 			}
 		} else {
 			result += string(char)
@@ -31,3 +29,4 @@ func Capitalize(s string) string {
 
 	return result
 }
+
