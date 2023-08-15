@@ -18,16 +18,13 @@ func Capitalize(s string) string {
 				capitalizeNext = false
 			} else {
 				if char >= 'A' && char <= 'Z' {
-					result += string(char + 'a' - 'A')
+					result += string(char - 'A' + 'a')
 				} else {
 					result += string(char)
 				}
 			}
 		} else {
 			result += string(char)
-			capitalizeNext = true
-		}
-		if char == ' ' || char == '+' || char == '-' || char == '.' {
 			capitalizeNext = true
 		}
 	}
