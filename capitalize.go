@@ -3,8 +3,6 @@
 
 package piscine
 
-package piscine
-
 func Capitalize(s string) string {
 	result := ""
 	capitalizeNext := true
@@ -29,4 +27,3 @@ func Capitalize(s string) string {
 
 	return result
 }
-
