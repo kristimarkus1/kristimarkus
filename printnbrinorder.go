@@ -5,8 +5,7 @@
 package piscine
 
 import (
-	"fmt"
-	"sort"
+	"github.com/01-edu/z01"
 )
 
 func PrintNbrInOrder(n int) {
@@ -14,7 +13,7 @@ func PrintNbrInOrder(n int) {
 		return
 	}
 
-	digits := []int{}
+	digits := make([]int, 0)
 	for n > 0 {
 		digit := n % 10
 		digits = append(digits, digit)
@@ -22,12 +21,19 @@ func PrintNbrInOrder(n int) {
 	}
 
 	if len(digits) == 0 {
-		fmt.Print("0")
+		z01.PrintRune('0')
 		return
 	}
 
-	sort.Ints(digits)
+	for i := 0; i < len(digits)-1; i++ {
+		for j := 0; j < len(digits)-i-1; j++ {
+			if digits[j] > digits[j+1] {
+				digits[j], digits[j+1] = digits[j+1], digits[j]
+			}
+		}
+	}
+
 	for _, digit := range digits {
-		fmt.Print(digit)
+		z01.PrintRune(rune(digit) + '0')
 	}
 }
