@@ -27,6 +27,9 @@ func Capitalize(s string) string {
 			result += string(char)
 			capitalizeNext = true
 		}
+		if char == ' ' || char == '+' || char == '-' || char == '.' {
+			capitalizeNext = true
+		}
 	}
 
 	return result
