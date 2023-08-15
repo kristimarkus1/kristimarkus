@@ -9,21 +9,26 @@
 package piscine
 
 func TrimAtoi(s string) int {
-	var result int
-	sign := 1
-	signFound := false
+	var neg bool = false
+	var empty bool = true
+	var res int = 0
 
-	for _, char := range s {
-		if char == '-' && !signFound {
-			sign = -1
-			signFound = true
-		} else if char >= '0' && char <= '9' {
-			result = result*10 + int(char-'0')
-			signFound = true
-		} else if signFound {
-			break
+	for _, v := range s {
+		if empty && !neg && v == '-' {
+			neg = true
+		} else if v >= '0' && v <= '9' {
+			res *= 10
+			res += int(v - '0')
+			empty = false
 		}
 	}
-
-	return result * sign
+	if empty {
+		return 0
+	} else {
+		if neg {
+			return -res
+		} else {
+			return res
+		}
+	}
 }
