@@ -17,7 +17,11 @@ func Capitalize(s string) string {
 				}
 				capitalizeNext = false
 			} else {
-				result += string(char)
+				if char >= 'A' && char <= 'Z' {
+					result += string(char + 'a' - 'A')
+				} else {
+					result += string(char)
+				}
 			}
 		} else {
 			result += string(char)
