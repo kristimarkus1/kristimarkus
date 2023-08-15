@@ -1,4 +1,4 @@
-// Write a function that capitalizes the first letter 
+// Write a function that capitalizes the first letter
 // of each word and lowercases the rest.
 
 package piscine
@@ -31,4 +31,3 @@ func Capitalize(s string) string {
 
 	return result
 }
-
