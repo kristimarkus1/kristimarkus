@@ -7,17 +7,20 @@ import (
 func PrintNbrBase(s int, t string) {
 	ans := ""
 	ln := 0
-	for range t {
-		ln++
+	for _, c := range t {
+		if c == c {
+			ln++
+		}
 	}
 	mx_p := ln
 	if s < 0 {
 		ans = "-"
-		mx_p = -1
+		mx_p *= -1
 	}
 	if ln > 1 {
+
 		for s/mx_p >= ln {
-			mx_p = ln
+			mx_p *= ln
 		}
 		for mx_p != 0 {
 			ans = ans + string(t[s/mx_p])
@@ -30,7 +33,7 @@ func PrintNbrBase(s int, t string) {
 				ans = "NV"
 				break
 			}
-			if !x[c] {
+			if x[c] == false {
 				x[c] = true
 			} else {
 				ans = "NV"
