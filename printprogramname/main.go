@@ -11,5 +11,7 @@ import (
 func main() {
 	arguments := os.Args[0]
 
-	z01.PrintRune([]rune(arguments)[0])
+	for _, character := range arguments {
+		z01.PrintRune(rune(character))
+	}
 }
