@@ -31,8 +31,7 @@ func main() {
 	}
 
 	if insertString != "" {
-		argumentString = replaceFirstOccurrence(argumentString, "--insert "+insertString, insertString)
-		argumentString = replaceFirstOccurrence(argumentString, "-i "+insertString, insertString)
+		argumentString = insertString + argumentString
 	}
 
 	if orderFlag {
@@ -65,24 +64,6 @@ func orderASCII(s string) string {
 		}
 	}
 	return string(runes)
-}
-
-func replaceFirstOccurrence(str, old, new string) string {
-	if i := indexOf(str, old); i != -1 {
-		return str[:i] + new + str[i+len(old):]
-	}
-	return str
-}
-
-func indexOf(str, substr string) int {
-	n := len(str)
-	m := len(substr)
-	for i := 0; i <= n-m; i++ {
-		if str[i:i+m] == substr {
-			return i
-		}
-	}
-	return -1
 }
 
 func printString(s string) {
