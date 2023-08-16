@@ -3,31 +3,30 @@
 
 package piscine
 
-func Capitalize(s string) string {
-	result := ""
-	capitalizeNext := true
+func IsAlphaNumeric(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9')
+}
 
-	for _, char := range s {
-		if (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z') {
-			if capitalizeNext {
+func Capitalize(s string) string {
+	result := []rune(s)
+	previousIsAlphaNumeric := false
+
+	for i, char := range result {
+		if IsAlphaNumeric(char) {
+			if !previousIsAlphaNumeric {
 				if char >= 'a' && char <= 'z' {
-					result += string(char - 'a' + 'A')
-				} else {
-					result += string(char)
+					result[i] = char - 'a' + 'A'
 				}
-				capitalizeNext = false
 			} else {
 				if char >= 'A' && char <= 'Z' {
-					result += string(char - 'A' + 'a')
-				} else {
-					result += string(char)
+					result[i] = char - 'A' + 'a'
 				}
 			}
+			previousIsAlphaNumeric = true
 		} else {
-			result += string(char)
-			capitalizeNext = true
+			previousIsAlphaNumeric = false
 		}
 	}
 
-	return result
+	return string(result)
 }
