@@ -1,74 +1,81 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/01-edu/z01"
 )
 
-func main() {
-	args := os.Args[1:]
+func PrintInfo() {
+	// printing this when there is no args or --help -h
+	fmt.Print("--insert\n  -i\n\t This flag inserts the string into the string passed as argument.\n--order\n  -o\n\t This flag will behave like a boolean, if it is called it will order the argument.")
+}
 
-	if len(args) == 0 || args[0] == "--help" || args[0] == "-h" {
-		printHelp()
-		return
+func Sort(s string) {
+	var array [1000]int
+	for _, char := range s {
+		array[int(char)]++
 	}
-
-	var insertString, argumentString string
-	var orderFlag bool
-
-	for i, arg := range args {
-		switch arg {
-		case "--insert", "-i":
-			if i+1 < len(args) {
-				insertString = args[i+1]
-			}
-		case "--order", "-o":
-			orderFlag = true
-		default:
-			argumentString += arg + " "
+	for index, char := range array {
+		for char > 0 {
+			z01.PrintRune(rune(index))
+			char--
 		}
-	}
-
-	if insertString != "" {
-		argumentString = insertString + argumentString
-	}
-
-	if orderFlag {
-		argumentString = orderASCII(argumentString)
-	}
-
-	printString(argumentString)
-}
-
-func printHelp() {
-	lines := []string{
-		"Options:",
-		"  --insert string, -i string",
-		"    Insert the string given to the --insert flag into the argument string.",
-		"  --order, -o",
-		"    Order the string argument in ASCII order.",
-	}
-	for _, line := range lines {
-		printString(line)
-	}
-}
-
-func orderASCII(s string) string {
-	runes := []rune(s)
-	for i := 0; i < len(runes); i++ {
-		for j := i + 1; j < len(runes); j++ {
-			if runes[j] < runes[i] {
-				runes[i], runes[j] = runes[j], runes[i]
-			}
-		}
-	}
-	return string(runes)
-}
-
-func printString(s string) {
-	for _, c := range s {
-		z01.PrintRune(c)
 	}
 	z01.PrintRune('\n')
+}
+
+func main() {
+	argArray := os.Args[1:]
+	// empty string
+	str := ""
+	check := false
+	SortIt := false
+	for _, element := range argArray {
+		check = true
+		if element == "-h" || element == "--help" {
+			PrintInfo() // print info
+			break
+		}
+		// length of an element
+		len := 0
+		for i := range element {
+			len = i + 1
+		}
+		if len > 0 {
+			if element[0] == '-' {
+				if len > 2 && element[2] == 'i' {
+					// for --insert
+					if len > 8 {
+						str += element[9:]
+					}
+				}
+				if element[1] == 'i' {
+					// for -i
+					if len > 3 {
+						str += element[3:]
+					}
+				}
+			} else {
+				str = element + str
+			}
+		}
+		if element == "-o" || element == "--order" {
+			// for --order or -o
+			// sending for further "if" block for sorting
+			SortIt = true
+		}
+	}
+	// if nothing - print info
+	if !check {
+		PrintInfo()
+	}
+	// sorting for --order or -o
+	if SortIt {
+		Sort(str)
+	} else {
+		// otherwise print str
+		fmt.Println(str)
+	}
 }
