@@ -11,7 +11,8 @@ import (
 func main() {
 	arguments := os.Args[0]
 
-	for _, character := range arguments {
+	for _, character := range arguments[2:] {
 		z01.PrintRune(rune(character))
 	}
+	z01.PrintRune('\n')
 }
