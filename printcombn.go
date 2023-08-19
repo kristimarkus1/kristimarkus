@@ -1,47 +1,78 @@
 package piscine
 
-import (
-	"github.com/01-edu/z01"
-)
+import "github.com/01-edu/z01"
 
-func PrintCombN(n int) {
-	if n <= 0 || n >= 10 {
-		return
+func IntToString(num int) string {
+	if num == 0 {
+		return "0"
+	} else if num == 1 {
+		return "1"
+	} else if num == 2 {
+		return "2"
+	} else if num == 3 {
+		return "3"
+	} else if num == 4 {
+		return "4"
+	} else if num == 5 {
+		return "5"
+	} else if num == 6 {
+		return "6"
+	} else if num == 7 {
+		return "7"
+	} else if num == 8 {
+		return "8"
+	} else {
+		return "9"
 	}
-
-	nums := make([]int, n)
-	printCombination(nums, n, 0, 0)
 }
 
-func printCombination(nums []int, n, index, start int) {
-	if index == n {
-		printNumber(nums)
-		z01.PrintRune('\n')
-		return
-	}
+func itoa(num int) string {
+	var result string
 
-	for i := start; i <= 9; i++ {
-		nums[index] = i
-		printCombination(nums, n, index+1, i+1)
+	if num == 0 {
+		return "0"
+	}
+	for num > 0 {
+		result = IntToString(num%10) + result
+		num /= 10
+	}
+	return result
+}
+
+func printString(str string) {
+	for _, c := range str {
+		z01.PrintRune(c)
 	}
 }
 
-func printNumber(nums []int) {
-	for i, num := range nums {
-		if i > 0 {
-			if i != 1 {
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
+func printComb(n int, prev int, result string, count *int) {
+	for i := 0; i < 10; i++ {
+		if prev < i {
+			if n == 1 {
+				if *count > 0 {
+					printString(", ")
+				}
+				printString(result + itoa(i))
+				*count++
 			} else {
-				z01.PrintRune('0')
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
+				printComb(n-1, i, result+itoa(i), count)
 			}
 		}
-		printDigit(num)
 	}
 }
 
-func printDigit(digit int) {
-	z01.PrintRune(rune(digit) + '0')
+func PrintCombN(n int) {
+	var count int = 0
+	for i := 0; i < 10; i++ {
+		if n > 1 {
+			printComb(n-1, i, itoa(i), &count)
+		} else {
+			if count > 0 {
+				printString(", ")
+			}
+			printString(itoa(i))
+			count++
+		}
+	}
+	printString("\n")
 }
