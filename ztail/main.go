@@ -59,4 +59,3 @@ func printTail(filename string, count int, multipleFiles bool) {
 		fmt.Printf("\n")
 	}
 }
-
