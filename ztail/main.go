@@ -6,70 +6,54 @@ import (
 )
 
 func main() {
-	args := os.Args[1:]
-
-	if len(args) < 2 || args[0] != "-c" {
-		usageAndExit()
+	if len(os.Args) < 3 {
+		fmt.Println("Usage: go run . -c NUM FILE1 [FILE2...]")
+		os.Exit(1)
 	}
 
-	count := 0
-	_, err := fmt.Sscanf(args[1], "%d", &count)
-	if err != nil || count <= 0 {
-		usageAndExit()
+	num := 0
+	for _, c := range os.Args[2] {
+		if c < '0' || c > '9' {
+			fmt.Println("Invalid number:", os.Args[2])
+			os.Exit(1)
+		}
+		num = num*10 + int(c-'0')
 	}
 
-	files := args[2:]
-
-	success := true
-
-	for i, filename := range files {
+	exitStatus := 0
+	for i, file := range os.Args[3:] {
 		if i > 0 {
 			fmt.Println()
 		}
-		if !printTail(filename, count) {
-			success = false
+		if len(os.Args) > 4 {
+			fmt.Printf("==> %s <==\n", file)
 		}
+		f, err := os.Open(file)
+		if err != nil {
+			fmt.Println(err)
+			exitStatus = 1
+			continue
+		}
+		defer f.Close()
+		fi, err := f.Stat()
+		if err != nil {
+			fmt.Println(err)
+			exitStatus = 1
+			continue
+		}
+		size := fi.Size()
+		start := size - int64(num)
+		if start < 0 {
+			start = 0
+		}
+		buf := make([]byte, num)
+		n, err := f.ReadAt(buf, start)
+		if err != nil && err.Error() != "EOF" {
+			fmt.Println(err)
+			exitStatus = 1
+			continue
+		}
+		fmt.Print(string(buf[:n]))
 	}
-
-	if !success {
-		os.Exit(1)
-	}
-}
-
-func usageAndExit() {
-	os.Exit(1)
-}
-
-func printTail(filename string, count int) bool {
-	file, err := os.Open(filename)
-	if err != nil {
-		fmt.Printf("open %s: %s\n", filename, err)
-		return false
-	}
-	defer file.Close()
-
-	stat, err := file.Stat()
-	if err != nil {
-		fmt.Printf("%s\n", err)
-		return false
-	}
-
-	fmt.Printf("==> %s <==\n", filename)
-
-	if stat.Size() < int64(count) {
-		fmt.Printf("File size is smaller than count\n")
-		return true // Modified this line to return true instead of false
-	}
-
-	file.Seek(stat.Size()-int64(count), 0)
-	buffer := make([]byte, count)
-	_, err = file.Read(buffer)
-	if err != nil {
-		fmt.Printf("%s\n", err)
-		return false
-	}
-
-	fmt.Printf("%s", buffer)
-
-	return true
+	os.Exit(exitStatus)
 }
