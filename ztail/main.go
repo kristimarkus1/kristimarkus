@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	"github.com/01-edu/z01"
 )
 
 func main() {
@@ -28,7 +26,7 @@ func main() {
 
 func usage() {
 	// Print usage message and exit
-	fmt.Println("Usage: go run . -c <count> <file1> [<file2> ...]")
+	fmt.Printf("Usage: %s -c <count> <file1> [<file2> ...]\n", os.Args[0])
 	os.Exit(1)
 }
 
@@ -39,10 +37,8 @@ func printTail(filename string, count int, multipleFiles bool) {
 
 	file, err := os.Open(filename)
 	if err != nil {
-		errMessage := "open " + filename + ": " + err.Error() + "\n"
-		for _, r := range errMessage {
-			z01.PrintRune(r)
-		}
+		errMessage := fmt.Sprintf("open %s: %s\n", filename, err.Error())
+		fmt.Printf(errMessage)
 		os.Exit(1)
 	}
 	defer file.Close()
@@ -52,18 +48,15 @@ func printTail(filename string, count int, multipleFiles bool) {
 	buffer := make([]byte, count)
 	n, err := file.Read(buffer)
 	if err != nil {
-		errMessage := "ERROR: " + err.Error() + "\n"
-		for _, r := range errMessage {
-			z01.PrintRune(r)
-		}
+		errMessage := fmt.Sprintf("ERROR: %s\n", err.Error())
+		fmt.Printf(errMessage)
 		os.Exit(1)
 	}
 
-	for _, r := range buffer[:n] {
-		z01.PrintRune(rune(r))
-	}
+	fmt.Printf("%s", buffer[:n])
 
 	if multipleFiles {
-		z01.PrintRune('\n')
+		fmt.Printf("\n")
 	}
 }
+
