@@ -42,8 +42,6 @@ func usageAndExit() {
 }
 
 func printTail(filename string, count int) bool {
-	fmt.Printf("==> %s <==\n", filename)
-
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Printf("open %s: %s\n", filename, err)
@@ -59,8 +57,10 @@ func printTail(filename string, count int) bool {
 
 	if stat.Size() < int64(count) {
 		fmt.Println("File size is smaller than count")
-		return false
+		return true // Print the error message, but return true to continue processing other files
 	}
+
+	fmt.Printf("==> %s <==\n", filename)
 
 	file.Seek(stat.Size()-int64(count), 0)
 	buffer := make([]byte, count)
