@@ -7,26 +7,31 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
+	args := os.Args[1:]
+
+	if len(args) == 0 {
 		fmt.Println("File name missing")
-		return
-	}
+	} else if len(args) > 1 {
+		fmt.Println("Too many arguments")
+	} else {
+		fileName := args[0]
 
-	fileName := os.Args[1]
-
-	file, err := os.Open(fileName)
-	if err != nil {
-		fmt.Println("Error opening the file:", err)
-		return
-	}
-	defer file.Close()
-
-	data := make([]byte, 4096) // Read up to 4096 bytes at a time
-	for {
-		n, err := file.Read(data)
+		file, err := os.Open(fileName)
 		if err != nil {
-			break
+			fmt.Println("Error:", err)
+			return
 		}
-		fmt.Print(string(data[:n]))
+		defer file.Close()
+
+		buf := make([]byte, 1024)
+		for {
+			n, err := file.Read(buf)
+			if n > 0 {
+				os.Stdout.Write(buf[:n])
+			}
+			if err != nil {
+				break
+			}
+		}
 	}
 }
