@@ -38,7 +38,7 @@ func printTail(filename string, count int, multipleFiles bool) {
 	file, err := os.Open(filename)
 	if err != nil {
 		errMessage := fmt.Sprintf("open %s: %s\n", filename, err.Error())
-		fmt.Printf(errMessage)
+		fmt.Print(errMessage)
 		os.Exit(1)
 	}
 	defer file.Close()
@@ -48,14 +48,14 @@ func printTail(filename string, count int, multipleFiles bool) {
 	buffer := make([]byte, count)
 	n, err := file.Read(buffer)
 	if err != nil {
-		errMessage := fmt.Sprintf("ERROR: %s\n", err.Error())
-		fmt.Printf(errMessage)
+		errMessage := fmt.Sprintf("%s\n", err.Error())
+		fmt.Print(errMessage)
 		os.Exit(1)
 	}
 
-	fmt.Printf("%s", buffer[:n])
+	fmt.Print(string(buffer[:n]))
 
 	if multipleFiles {
-		fmt.Printf("\n")
+		fmt.Print("\n")
 	}
 }
