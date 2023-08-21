@@ -37,7 +37,6 @@ func main() {
 }
 
 func usageAndExit() {
-	fmt.Printf("Usage: %s -c <count> <file1> [<file2> ...]\n", os.Args[0])
 	os.Exit(1)
 }
 
@@ -64,7 +63,7 @@ func printTail(filename string, count int) bool {
 
 	file.Seek(stat.Size()-int64(count), 0)
 	buffer := make([]byte, count)
-	n, err := file.Read(buffer)
+	_, err = file.Read(buffer) // Changed this line
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		return false
