@@ -26,12 +26,10 @@ func main() {
 		if i > 0 {
 			fmt.Println()
 		}
-		if fileExists(filename) {
-			if !printTail(filename, count, len(files) > 1) {
-				success = false
-			}
-		} else {
-			fmt.Printf("open %s: no such file or directory\n", filename)
+		if len(files) > 1 && fileExists(filename) {
+			fmt.Printf("==> %s <==\n", filename)
+		}
+		if !printTail(filename, count) {
 			success = false
 		}
 	}
@@ -43,20 +41,13 @@ func main() {
 
 func usageAndExit() {
 	fmt.Printf("Usage: %s -c <count> <file1> [<file2> ...]\n", os.Args[0])
-	os.Exit(0) // Exit without an error status
+	os.Exit(1)
 }
 
-func printTail(filename string, count int, multipleFiles bool) bool {
-	if multipleFiles {
-		fmt.Printf("==> %s <==\n", filename)
-	}
-
+func printTail(filename string, count int) bool {
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Printf("open %s: %s\n", filename, err)
-		if multipleFiles {
-			fmt.Println() // Add an empty line after the error message
-		}
 		return false
 	}
 	defer file.Close()
@@ -64,17 +55,11 @@ func printTail(filename string, count int, multipleFiles bool) bool {
 	stat, err := file.Stat()
 	if err != nil {
 		fmt.Printf("%s\n", err)
-		if multipleFiles {
-			fmt.Println() // Add an empty line after the error message
-		}
 		return false
 	}
 
 	if stat.Size() < int64(count) {
 		fmt.Println("File size is smaller than count")
-		if multipleFiles {
-			fmt.Println() // Add an empty line after the error message
-		}
 		return false
 	}
 
@@ -83,9 +68,6 @@ func printTail(filename string, count int, multipleFiles bool) bool {
 	n, err := file.Read(buffer)
 	if err != nil {
 		fmt.Printf("%s\n", err)
-		if multipleFiles {
-			fmt.Println() // Add an empty line after the error message
-		}
 		return false
 	}
 
