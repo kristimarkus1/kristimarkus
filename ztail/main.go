@@ -57,7 +57,7 @@ func printTail(filename string, count int) bool {
 
 	if stat.Size() < int64(count) {
 		fmt.Println("File size is smaller than count")
-		return true // Print the error message, but return true to continue processing other files
+		return false
 	}
 
 	fmt.Printf("==> %s <==\n", filename)
@@ -70,7 +70,7 @@ func printTail(filename string, count int) bool {
 		return false
 	}
 
-	fmt.Printf("%s", buffer[:n])
+	fmt.Printf("%s", buffer)
 
 	return true
 }
