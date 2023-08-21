@@ -8,55 +8,64 @@ import (
 func main() {
 	args := os.Args[1:]
 
-	if len(args) < 3 || args[0] != "-c" {
+	if len(args) < 2 || args[0] != "-c" {
 		usage()
 	}
 
 	count := 0
-	_, err := fmt.Sscanf(args[1], "%d", &count)
-	if err != nil {
+	if _, err := fmt.Sscanf(args[1], "%d", &count); err != nil {
 		usage()
 	}
 
 	files := args[2:]
 
-	hasError := false
+	success := true
 
-	for _, filename := range files {
-		if len(files) > 1 {
-			fmt.Printf("==> %s <==\n", filename)
+	for i, filename := range files {
+		if i > 0 {
+			fmt.Println()
 		}
-		file, err := os.Open(filename)
-		if err != nil {
-			fmt.Printf("open %s: %s\n", filename, err.Error())
-			hasError = true
-			continue
-		}
-		defer file.Close()
-
-		stat, _ := file.Stat()
-		file.Seek(stat.Size()-int64(count), 0)
-		buffer := make([]byte, count)
-		n, err := file.Read(buffer)
-		if err != nil {
-			fmt.Printf("%s\n", err.Error())
-			hasError = true
-			continue
-		}
-
-		fmt.Print(string(buffer[:n]))
-
-		if len(files) > 1 {
-			fmt.Print("\n")
+		if !printTail(filename, count) {
+			success = false
 		}
 	}
 
-	if hasError {
+	if !success {
 		os.Exit(1)
 	}
 }
 
 func usage() {
+	// Print usage message and exit
 	fmt.Printf("Usage: %s -c <count> <file1> [<file2> ...]\n", os.Args[0])
 	os.Exit(1)
+}
+
+func printTail(filename string, count int) bool {
+	file, err := os.Open(filename)
+	if err != nil {
+		errMessage := fmt.Sprintf("open %s: %s\n", filename, err.Error())
+		fmt.Print(errMessage)
+		return false
+	}
+	defer file.Close()
+
+	stat, _ := file.Stat()
+	if stat.Size() < int64(count) {
+		errMessage := fmt.Sprintf("%s\n", "File size is smaller than count")
+		fmt.Print(errMessage)
+		return false
+	}
+	file.Seek(stat.Size()-int64(count), 0) // Seek to the beginning of the count bytes from the end
+	buffer := make([]byte, count)
+	n, err := file.Read(buffer)
+	if err != nil {
+		errMessage := fmt.Sprintf("%s\n", err.Error())
+		fmt.Print(errMessage)
+		return false
+	}
+
+	fmt.Printf("==> %s <==\n%s\n", filename, buffer[:n])
+
+	return true
 }
