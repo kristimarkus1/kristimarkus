@@ -32,6 +32,7 @@ func main() {
 				for _, r := range errMessage {
 					z01.PrintRune(r)
 				}
+				os.Exit(1) // Exit with non-zero status
 			} else {
 				buffer := make([]byte, 4096)
 				for {
