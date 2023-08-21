@@ -26,9 +26,6 @@ func main() {
 		if i > 0 {
 			fmt.Println()
 		}
-		if len(files) > 1 && fileExists(filename) {
-			fmt.Printf("==> %s <==\n", filename)
-		}
 		if !printTail(filename, count) {
 			success = false
 		}
@@ -45,6 +42,8 @@ func usageAndExit() {
 }
 
 func printTail(filename string, count int) bool {
+	fmt.Printf("==> %s <==\n", filename)
+
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Printf("open %s: %s\n", filename, err)
@@ -74,9 +73,4 @@ func printTail(filename string, count int) bool {
 	fmt.Printf("%s", buffer[:n])
 
 	return true
-}
-
-func fileExists(filename string) bool {
-	_, err := os.Stat(filename)
-	return err == nil
 }
