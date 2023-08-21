@@ -54,16 +54,16 @@ func printTail(filename string, count int) bool {
 		return false
 	}
 
+	fmt.Printf("==> %s <==\n", filename)
+
 	if stat.Size() < int64(count) {
 		fmt.Println("File size is smaller than count")
 		return false
 	}
 
-	fmt.Printf("==> %s <==\n", filename)
-
 	file.Seek(stat.Size()-int64(count), 0)
 	buffer := make([]byte, count)
-	_, err = file.Read(buffer) // Changed this line
+	_, err = file.Read(buffer)
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		return false
