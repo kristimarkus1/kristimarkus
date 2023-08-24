@@ -11,14 +11,14 @@ type List struct {
 }
 
 func ListPushFront(l *List, data interface{}) {
-	newNode := &NodeL{
+	HnewNode := &NodeL{
 		Data: data,
 		Next: l.Head,
 	}
 
-	l.Head = newNode
+	l.Head = HnewNode
 
 	if l.Tail == nil {
-		l.Tail = newNode
+		l.Tail = HnewNode
 	}
 }
