@@ -1,17 +1,17 @@
 package piscine
 
-type NodeLo struct {
+type NodeL struct {
 	Data interface{}
-	Next *NodeLo
+	Next *NodeL
 }
 
-type Listo struct {
-	Head *NodeLo
-	Tail *NodeLo
+type List struct {
+	Head *NodeL
+	Tail *NodeL
 }
 
-func ListPushFront(l *Listo, data interface{}) {
-	HlnewNode := &NodeLo{
+func ListPushFront(l *List, data interface{}) {
+	HlnewNode := &NodeL{
 		Data: data,
 		Next: l.Head,
 	}
