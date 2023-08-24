@@ -6,12 +6,11 @@ import (
 
 type student struct {
 	name string
-	age int
+	age  int
 }
 
 func main() {
-
-	chris  :=  student{}
+	chris := student{}
 
 	z01.PrintRune(rune(chris))
 }
