@@ -10,15 +10,15 @@ type List struct {
 }
 
 func ListPushBack(l *List, data interface{}) {
-	newNode := &NodeL{
+	lnewNode := &NodeL{
 		Data: data,
 		Next: nil,
 	}
 	if l.Head == nil {
-		l.Head = newNode
-		l.Tail = newNode
+		l.Head = lnewNode
+		l.Tail = lnewNode
 	} else {
-		l.Tail.Next = newNode
-		l.Tail = newNode
+		l.Tail.Next = lnewNode
+		l.Tail = lnewNode
 	}
 }
