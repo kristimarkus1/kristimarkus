@@ -1,11 +1,8 @@
 package piscine
 
-func ListSize(l *List) int {
-	size := 0
-	current := l.Head
-	for current != nil {
-		size++
-		current = current.Next
+func ListLast(l *List) interface{} {
+	if l.Tail != nil {
+		return l.Tail.Data
 	}
-	return size
+	return nil
 }
