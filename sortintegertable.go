@@ -11,9 +11,3 @@ func SortIntegerTable(table []int) {
 		}
 	}
 }
-
-// Write a function that reorders a slice of int in ascending order.
-
-// s := []int{5,4,3,2,1,0}
-
-// [0 1 2 3 4 5]

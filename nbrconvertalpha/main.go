@@ -1,46 +1,46 @@
-package main
+package piscine
 
 import (
-	"os"
-
 	"github.com/01-edu/z01"
 )
 
-func main() {
-	arguments := os.Args[1:]
-
-	if len(arguments) == 0 {
-		return
+func PrintNbrBase(s int, t string) {
+	ans := ""
+	ln := 0
+	for range t {
+		ln++
 	}
-
-	upperCase := false
-	if arguments[0] == "--upper" {
-		upperCase = true
-		arguments = arguments[1:]
+	mx_p := ln
+	if s < 0 {
+		ans = "-"
+		mx_p *= -1
 	}
-
-	for _, arg := range arguments {
-		n := 0
-		validNumber := true
-
-		for _, char := range arg {
-			if char < '0' || char > '9' {
-				validNumber = false
+	if ln > 1 {
+		for s/mx_p >= ln {
+			mx_p *= ln
+		}
+		for mx_p != 0 {
+			ans = ans + string(t[s/mx_p])
+			s = s - s/mx_p*mx_p
+			mx_p /= ln
+		}
+		x := map[rune]bool{}
+		for _, c := range t {
+			if c == '+' || c == '-' {
+				ans = "NV"
 				break
 			}
-			n = n*10 + int(char-'0')
-		}
-
-		if validNumber && n >= 1 && n <= 26 {
-			letter := 'a' + rune(n-1)
-			if upperCase {
-				letter = 'A' + rune(n-1)
+			if !x[c] {
+				x[c] = true
+			} else {
+				ans = "NV"
+				break
 			}
-			z01.PrintRune(letter)
-		} else {
-			z01.PrintRune(' ')
 		}
+	} else {
+		ans = "NV"
 	}
-
-	z01.PrintRune('\n')
+	for _, c := range ans {
+		z01.PrintRune(c)
+	}
 }

@@ -18,7 +18,6 @@ func PrintNum(num int) {
 		PrintNum(num / 10)
 	}
 	z01.PrintRune(i)
-	return
 }
 
 func PrintNbr(n int) {
