@@ -1,16 +1,16 @@
 package piscine
 
 func IsPositiveNode(node *NodeL) bool {
-	switch data := node.Data.(type) {
+	switch node.Data.(type) {
 	case int, float32, float64, byte:
-		return data.(int) > 0
+		return node.Data.(int) > 0
 	default:
 		return false
 	}
 }
 
 func IsAlNode(node *NodeL) bool {
-	switch data := node.Data.(type) {
+	switch node.Data.(type) {
 	case int, float32, float64, byte:
 		return false
 	default:
@@ -18,12 +18,12 @@ func IsAlNode(node *NodeL) bool {
 	}
 }
 
-func ListForEachIf(l *List, f func(*NodeL), cond func(*NodeL) bool) {
-	current := l.Head
-	for current != nil {
-		if cond(current) {
-			f(current)
+func ListForEachIf(l *List, f func(*NodeL), comp func(*NodeL) bool) {
+	it := l.Head
+	for it != nil {
+		if comp(it) {
+			f(it)
 		}
-		current = current.Next
+		it = it.Next
 	}
 }
